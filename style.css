@@ -44,32 +44,21 @@ h1 {
 
 .downloads {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
-.btn {
-  background-color: transparent;
-  border: 2px solid #d4af37;
-  color: #d4af37;
-  padding: 12px 30px;
-  border-radius: 8px;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-weight: 600;
+.store-badge {
+  height: 60px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(212,175,55,0.4));
 }
 
-.btn:hover {
-  background-color: #d4af37;
-  color: #0d0d0d;
-  box-shadow: 0 0 20px rgba(212,175,55,0.6);
+.store-badge:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 15px rgba(212,175,55,0.7));
 }
-
-.btn.android:hover { border-color: #3ddc84; box-shadow: 0 0 15px #3ddc84; }
-.btn.ios:hover { border-color: #ffffff; box-shadow: 0 0 15px #fff; color: #111; }
-.btn.pc:hover { border-color: #e63946; box-shadow: 0 0 15px #e63946; }
 
 footer {
   margin-top: 60px;
