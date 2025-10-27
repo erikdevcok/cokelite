@@ -79,6 +79,7 @@
       cursor: pointer;
       border: none;
       font-family: 'Cinzel', serif;
+      min-height: 54px;
     }
 
     .btn:hover {
@@ -144,6 +145,7 @@
       gap: 10px;
       font-size: 0.9em;
       border: 1px solid #3a3a3a;
+      min-height: 48px;
     }
 
     .download-option:hover {
@@ -172,12 +174,18 @@
         flex-direction: row;
         flex-wrap: wrap;
         max-width: 600px;
+        justify-content: center;
       }
       
       .btn, .download-container {
-        width: auto;
-        flex: 1;
-        min-width: 200px;
+        width: 100%;
+        min-width: 280px;
+        flex: 0 0 auto;
+      }
+      
+      /* Garantir que todos os botões tenham exatamente a mesma largura */
+      .btn {
+        width: 100%;
       }
     }
 
