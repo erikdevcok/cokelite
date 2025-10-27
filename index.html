@@ -76,6 +76,9 @@
       gap: 12px;
       font-size: 1em;
       width: 100%;
+      cursor: pointer;
+      border: none;
+      font-family: 'Cinzel', serif;
     }
 
     .btn:hover {
@@ -107,6 +110,47 @@
       box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
     }
 
+    /* Menu de download */
+    .download-menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+      width: 100%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .download-menu.active {
+      display: flex;
+    }
+
+    .download-option {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      color: #d4af37;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.9em;
+      border: 1px solid #3a3a3a;
+    }
+
+    .download-option:hover {
+      background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .download-option i {
+      font-size: 1.1em;
+    }
+
     footer {
       margin-top: 60px;
       font-size: 0.9em;
@@ -136,6 +180,11 @@
       h1 { font-size: 2em; }
       .btn { padding: 15px 20px; }
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -146,14 +195,86 @@
   </header>
 
   <div class="buttons">
-    <a href="https://mega.nz/file/qRVl2BDR#kUWzzq7dnDBvqhZHkdrMBI5WD3VAj8GfKtljJhIpV-o" class="btn"><i class="fab fa-android"></i> Download Apk</a>
-    <a href="#" class="btn"><i class="fab fa-apple"></i> Download Ipa</a>
-    <a href="https://chat.whatsapp.com/F9D5CHuxn58IzPWTuB73mc?mode=wwc" target="_blank" class="btn whatsapp"><i class="fab fa-whatsapp"></i>Whatsapp</a>
-    <a href="https://www.youtube.com/@cokeliteofc" target="_blank" class="btn youtube"><i class="fab fa-youtube"></i>YouTube</a>
+    <!-- Botão Android com menu de download -->
+    <div class="download-container">
+      <button class="btn" id="android-btn">
+        <i class="fab fa-android"></i> Download APK
+      </button>
+      <div class="download-menu" id="android-menu">
+        <a href="#" class="download-option">
+          <i class="fas fa-download"></i> Download Direto
+        </a>
+        <a href="https://mega.nz/file/qIUx1YrQ#hXzgUBPJo4eAn798JKZqPc6vSjatQZfzNXA5Abol2zE" class="download-option" target="_blank">
+          <i class="fas fa-cloud-download-alt"></i> Mega
+        </a>
+        <a href="#" class="download-option">
+          <i class="fab fa-google-drive"></i> Google Drive
+        </a>
+      </div>
+    </div>
+    
+    <!-- Botão iOS com menu de download -->
+    <div class="download-container">
+      <button class="btn" id="ios-btn">
+        <i class="fab fa-apple"></i> Download IPA
+      </button>
+      <div class="download-menu" id="ios-menu">
+        <a href="#" class="download-option">
+          <i class="fas fa-download"></i> Download Direto
+        </a>
+        <a href="https://mega.nz/file/DEFxUK5K#bhxk5m_-Sm-wZbgpx9FNO2WTVW_VJhs0MCwCYk5OmyM" class="download-option">
+          <i class="fas fa-cloud-download-alt"></i> Mega
+        </a>
+        <a href="#" class="download-option">
+          <i class="fab fa-google-drive"></i> Google Drive
+        </a>
+      </div>
+    </div>
+    
+    <!-- Outros botões -->
+    <a href="https://chat.whatsapp.com/F9D5CHuxn58IzPWTuB73mc?mode=wwc" target="_blank" class="btn whatsapp">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+    <a href="https://www.youtube.com/@cokeliteofc" target="_blank" class="btn youtube">
+      <i class="fab fa-youtube"></i> YouTube
+    </a>
   </div>
 
   <footer>
     <p><span>© 2025</span> COK ELITE - Todos os direitos reservados</p>
   </footer>
+
+  <script>
+    // Função para alternar o menu de download
+    function toggleDownloadMenu(buttonId, menuId) {
+      const button = document.getElementById(buttonId);
+      const menu = document.getElementById(menuId);
+      
+      button.addEventListener('click', function() {
+        // Fecha outros menus abertos
+        document.querySelectorAll('.download-menu').forEach(menu => {
+          if (menu.id !== menuId) {
+            menu.classList.remove('active');
+          }
+        });
+        
+        // Alterna o menu atual
+        menu.classList.toggle('active');
+      });
+    }
+    
+    // Inicializar os menus de download
+    toggleDownloadMenu('android-btn', 'android-menu');
+    toggleDownloadMenu('ios-btn', 'ios-menu');
+    
+    // Fechar menu ao clicar fora
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.download-container')) {
+        document.querySelectorAll('.download-menu').forEach(menu => {
+          menu.classList.remove('active');
+        });
+      }
+    });
+  </script>
 </body>
 </html>
